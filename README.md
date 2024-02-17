@@ -73,6 +73,7 @@ Note: You can change the configuration above to create your VPC in other region 
 
 * Create the only resource we just defined. aws_vpc. But before we do that, we should check to see what terraform intends to create before we tell it to go ahead and create it. Run `terraform plan`.
 
+
 ![](./images/tf-plan.png)
 
 * Then, if you are happy with changes planned, execute `terraform apply`.
@@ -231,7 +232,7 @@ If we cannot hard code a value we want, then we will need a way to dynamically p
 
 Now we can simply update the public subnet block like this:
 
-# Create public subnet1
+    # Create public subnet1
     resource "aws_subnet" "public" { 
         count                   = length(data.aws_availability_zones.available.names)
         vpc_id                  = aws_vpc.main.id
@@ -404,7 +405,6 @@ Instead of having a long list of variables in main.tf file, we can actually make
     variable "enable_classiclink_dns_support" {
         default = "false"
     }
-
 
     variable "preferred_number_of_public_subnets" {
         default = null
